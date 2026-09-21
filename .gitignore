@@ -33,6 +33,13 @@ yarn-error.log*
 .env.test
 .env.production
 
+# internal docs / notes
+devdocs/
+docs/
+AGENTS.md
+NOTES.md
+.devdocs/
+
 # vercel
 .vercel
 

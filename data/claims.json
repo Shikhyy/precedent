@@ -1,0 +1,238 @@
+{
+  "patterns": [
+    {
+      "_id": "pattern-transfer",
+      "_type": "pattern",
+      "name": "ETH Transfers: transfer() vs call",
+      "slug": { "current": "eth-transfers-transfer-vs-call" },
+      "summary": "Historical guidance on using .transfer() vs .call() for sending Ether, specifically regarding the 2300 gas stipend and reentrancy protections.",
+      "aliases": ["transfer", "send", "call", "2300 gas stipend", "gas stipend", "reentrancy"]
+    },
+    {
+      "_id": "pattern-selfdestruct",
+      "_type": "pattern",
+      "name": "Contract Destruction: selfdestruct",
+      "slug": { "current": "contract-destruction-selfdestruct" },
+      "summary": "State deletion semantics of selfdestruct prior to and following Ethereum Cancun / EIP-6780, and compiler deprecation.",
+      "aliases": ["selfdestruct", "suicide", "EIP-6780", "cancun", "dencun"]
+    },
+    {
+      "_id": "pattern-safemath",
+      "_type": "pattern",
+      "name": "Integer Arithmetic: SafeMath",
+      "slug": { "current": "integer-arithmetic-safemath" },
+      "summary": "Necessity of SafeMath library wrappers before Solidity 0.8.0 versus native overflow and underflow checks.",
+      "aliases": ["SafeMath", "overflow", "underflow", "checked arithmetic", "0.8.0"]
+    },
+    {
+      "_id": "pattern-erc4626",
+      "_type": "pattern",
+      "name": "ERC-4626 Vault Inflation Attack",
+      "slug": { "current": "erc4626-vault-inflation-attack" },
+      "summary": "First-depositor donation and exchange-rate inflation exploits on ERC-4626 tokenized vaults and library mitigations.",
+      "aliases": ["ERC-4626", "inflation attack", "donation attack", "virtual shares", "vault"]
+    },
+    {
+      "_id": "pattern-txorigin",
+      "_type": "pattern",
+      "name": "Authorization: tx.origin",
+      "slug": { "current": "authorization-tx-origin" },
+      "summary": "Stable control case: guidance prohibiting tx.origin for authentication and access control across all compiler versions.",
+      "aliases": ["tx.origin", "origin", "phishing", "authorization"]
+    }
+  ],
+  "sources": [
+    {
+      "_id": "source-consensys-2016",
+      "_type": "source",
+      "title": "Smart Contract Best Practices (2016)",
+      "url": "https://consensys.github.io/smart-contract-best-practices/",
+      "publisher": "ConsenSys Diligence",
+      "kind": "docs",
+      "publishedAt": "2016-06-01",
+      "license": "CC-BY-4.0"
+    },
+    {
+      "_id": "source-eip-1884",
+      "_type": "source",
+      "title": "EIP-1884: Repricing for trie-size-dependent opcodes",
+      "url": "https://eips.ethereum.org/EIPS/eip-1884",
+      "publisher": "Ethereum Foundation",
+      "kind": "eip",
+      "publishedAt": "2019-09-04",
+      "license": "CC0-1.0"
+    },
+    {
+      "_id": "source-consensys-stop-transfer",
+      "_type": "source",
+      "title": "Stop Using Solidity's transfer() Now",
+      "url": "https://consensys.io/diligence/blog/2019/09/stop-using-soliditys-transfer-now/",
+      "publisher": "ConsenSys Diligence",
+      "kind": "blog",
+      "publishedAt": "2019-09-10",
+      "license": "All Rights Reserved"
+    },
+    {
+      "_id": "source-solidity-080-release",
+      "_type": "source",
+      "title": "Solidity 0.8.0 Release Announcement",
+      "url": "https://soliditylang.org/blog/2020/12/16/solidity-v0.8.0-release-announcement/",
+      "publisher": "Ethereum Foundation",
+      "kind": "release-notes",
+      "publishedAt": "2020-12-16",
+      "license": "CC-BY-4.0"
+    },
+    {
+      "_id": "source-openzeppelin-safemath",
+      "_type": "source",
+      "title": "OpenZeppelin SafeMath Documentation",
+      "url": "https://docs.openzeppelin.com/contracts/3.x/api/math",
+      "publisher": "OpenZeppelin",
+      "kind": "docs",
+      "publishedAt": "2018-05-15",
+      "license": "MIT"
+    },
+    {
+      "_id": "source-eip-6780",
+      "_type": "source",
+      "title": "EIP-6780: SELFDESTRUCT only in same transaction",
+      "url": "https://eips.ethereum.org/EIPS/eip-6780",
+      "publisher": "Ethereum Foundation",
+      "kind": "eip",
+      "publishedAt": "2023-03-25",
+      "license": "CC0-1.0"
+    },
+    {
+      "_id": "source-solidity-selfdestruct-depr",
+      "_type": "source",
+      "title": "Solidity 0.8.18 Release Notes",
+      "url": "https://soliditylang.org/blog/2023/02/01/solidity-0.8.18-release-announcement/",
+      "publisher": "Ethereum Foundation",
+      "kind": "release-notes",
+      "publishedAt": "2023-02-01",
+      "license": "CC-BY-4.0"
+    },
+    {
+      "_id": "source-openzeppelin-erc4626-v49",
+      "_type": "source",
+      "title": "OpenZeppelin Contracts v4.9.0 Virtual Shares Release",
+      "url": "https://github.com/OpenZeppelin/openzeppelin-contracts/releases/tag/v4.9.0",
+      "publisher": "OpenZeppelin",
+      "kind": "release-notes",
+      "publishedAt": "2023-05-24",
+      "license": "MIT"
+    },
+    {
+      "_id": "source-solidity-security-txorigin",
+      "_type": "source",
+      "title": "Solidity Documentation: Security Considerations",
+      "url": "https://docs.soliditylang.org/en/latest/security-considerations.html#tx-origin",
+      "publisher": "Ethereum Foundation",
+      "kind": "docs",
+      "publishedAt": "2016-01-01",
+      "license": "CC-BY-4.0"
+    }
+  ],
+  "claims": [
+    {
+      "_id": "claim-transfer-2016",
+      "_type": "claim",
+      "pattern": { "_type": "reference", "_ref": "pattern-transfer" },
+      "source": { "_type": "reference", "_ref": "source-consensys-2016" },
+      "statement": "Recommend transfer() to forward Ether because its 2300 gas limit prevents untrusted recipients from executing reentrant calls.",
+      "stance": "safe",
+      "fromVersion": 4000,
+      "toVersion": 5999,
+      "confidence": "verified",
+      "supersedes": []
+    },
+    {
+      "_id": "claim-transfer-2019",
+      "_type": "claim",
+      "pattern": { "_type": "reference", "_ref": "pattern-transfer" },
+      "source": { "_type": "reference", "_ref": "source-consensys-stop-transfer" },
+      "statement": "Avoid transfer() and send(); opcode gas repricing (EIP-1884) breaks 2300 gas assumptions. Use .call{value: ...}(\"\") with reentrancy guards.",
+      "stance": "deprecated",
+      "fromVersion": 6000,
+      "confidence": "verified",
+      "supersedes": [{ "_type": "reference", "_ref": "claim-transfer-2016" }]
+    },
+    {
+      "_id": "claim-selfdestruct-pre",
+      "_type": "claim",
+      "pattern": { "_type": "reference", "_ref": "pattern-selfdestruct" },
+      "source": { "_type": "reference", "_ref": "source-solidity-selfdestruct-depr" },
+      "statement": "selfdestruct immediately deallocates the contract code and storage, sweeping any remaining balance to the specified target address.",
+      "stance": "safe",
+      "toVersion": 8017,
+      "confidence": "verified",
+      "supersedes": []
+    },
+    {
+      "_id": "claim-selfdestruct-dencun",
+      "_type": "claim",
+      "pattern": { "_type": "reference", "_ref": "pattern-selfdestruct" },
+      "source": { "_type": "reference", "_ref": "source-eip-6780" },
+      "statement": "selfdestruct is deprecated; under EIP-6780 it only burns code and storage if invoked within the same transaction that created the contract.",
+      "stance": "deprecated",
+      "fromVersion": 8018,
+      "evmFork": "Cancun",
+      "confidence": "verified",
+      "supersedes": [{ "_type": "reference", "_ref": "claim-selfdestruct-pre" }]
+    },
+    {
+      "_id": "claim-safemath-pre08",
+      "_type": "claim",
+      "pattern": { "_type": "reference", "_ref": "pattern-safemath" },
+      "source": { "_type": "reference", "_ref": "source-openzeppelin-safemath" },
+      "statement": "Arithmetic operations do not check for overflow or underflow; explicit usage of OpenZeppelin SafeMath wrappers is strictly necessary.",
+      "stance": "unsafe",
+      "toVersion": 7999,
+      "confidence": "verified",
+      "supersedes": []
+    },
+    {
+      "_id": "claim-safemath-post08",
+      "_type": "claim",
+      "pattern": { "_type": "reference", "_ref": "pattern-safemath" },
+      "source": { "_type": "reference", "_ref": "source-solidity-080-release" },
+      "statement": "Solidity 0.8.0 natively reverts on arithmetic overflow and underflow; explicit SafeMath is redundant, increases bytecode size, and wastes gas.",
+      "stance": "safe",
+      "fromVersion": 8000,
+      "confidence": "verified",
+      "supersedes": [{ "_type": "reference", "_ref": "claim-safemath-pre08" }]
+    },
+    {
+      "_id": "claim-erc4626-unprotected",
+      "_type": "claim",
+      "pattern": { "_type": "reference", "_ref": "pattern-erc4626" },
+      "source": { "_type": "reference", "_ref": "source-openzeppelin-erc4626-v49" },
+      "statement": "Vanilla ERC-4626 vaults are susceptible to exchange-rate manipulation (inflation attack) by early depositors donating raw assets.",
+      "stance": "unsafe",
+      "toVersion": 8019,
+      "confidence": "verified",
+      "supersedes": []
+    },
+    {
+      "_id": "claim-erc4626-virtual-shares",
+      "_type": "claim",
+      "pattern": { "_type": "reference", "_ref": "pattern-erc4626" },
+      "source": { "_type": "reference", "_ref": "source-openzeppelin-erc4626-v49" },
+      "statement": "Mitigate ERC-4626 inflation attacks by using virtual shares and assets offsets (e.g. OpenZeppelin v4.9+) or minting initial dead shares.",
+      "stance": "safe",
+      "fromVersion": 8020,
+      "confidence": "verified",
+      "supersedes": [{ "_type": "reference", "_ref": "claim-erc4626-unprotected" }]
+    },
+    {
+      "_id": "claim-txorigin-forbidden",
+      "_type": "claim",
+      "pattern": { "_type": "reference", "_ref": "pattern-txorigin" },
+      "source": { "_type": "reference", "_ref": "source-solidity-security-txorigin" },
+      "statement": "Never authorize transactions using tx.origin; an external contract called by an authorized user can phish and drain the contract.",
+      "stance": "unsafe",
+      "confidence": "verified",
+      "supersedes": []
+    }
+  ]
+}

@@ -1,0 +1,172 @@
+[
+  {
+    "id": "q01",
+    "question": "Is using address.transfer() safe for sending ETH on Solidity 0.8.28?",
+    "version": "0.8.28",
+    "patternId": "pattern-transfer",
+    "truth": {
+      "status": "settled",
+      "stance": "deprecated",
+      "controllingClaimIds": ["claim-transfer-2019"],
+      "staleClaimIds": ["claim-transfer-2016"]
+    },
+    "trap": "transfer() was recommended in 2016 due to its 2300 gas stipend, but EIP-1884 gas repricing broke this assumption, making it deprecated."
+  },
+  {
+    "id": "q02",
+    "question": "Can I use transfer() to send ETH to a contract on compiler version 0.5.17?",
+    "version": "0.5.17",
+    "patternId": "pattern-transfer",
+    "truth": {
+      "status": "settled",
+      "stance": "safe",
+      "controllingClaimIds": ["claim-transfer-2016"],
+      "staleClaimIds": []
+    },
+    "trap": "On pre-Istanbul compilers (0.5.x), transfer() was the standard recommended mitigation against reentrancy."
+  },
+  {
+    "id": "q03",
+    "question": "How does selfdestruct behave on Cancun fork / Solidity 0.8.24?",
+    "version": "0.8.24",
+    "evm": "cancun",
+    "patternId": "pattern-selfdestruct",
+    "truth": {
+      "status": "settled",
+      "stance": "deprecated",
+      "controllingClaimIds": ["claim-selfdestruct-dencun"],
+      "staleClaimIds": ["claim-selfdestruct-pre"]
+    },
+    "trap": "Prior to EIP-6780, selfdestruct cleared storage and code. Under Cancun, it only does so in the creation transaction."
+  },
+  {
+    "id": "q04",
+    "question": "Will selfdestruct delete contract bytecode on Solidity 0.8.17?",
+    "version": "0.8.17",
+    "patternId": "pattern-selfdestruct",
+    "truth": {
+      "status": "settled",
+      "stance": "safe",
+      "controllingClaimIds": ["claim-selfdestruct-pre"],
+      "staleClaimIds": []
+    },
+    "trap": "Prior to 0.8.18 deprecation and Cancun hard fork, selfdestruct was the valid opcode for bytecode and storage destruction."
+  },
+  {
+    "id": "q05",
+    "question": "Should I import SafeMath for uint256 arithmetic in Solidity 0.8.20?",
+    "version": "0.8.20",
+    "patternId": "pattern-safemath",
+    "truth": {
+      "status": "settled",
+      "stance": "safe",
+      "controllingClaimIds": ["claim-safemath-post08"],
+      "staleClaimIds": ["claim-safemath-pre08"]
+    },
+    "trap": "SafeMath was required in 0.7.x and below, but 0.8.0 introduced default checked arithmetic, making explicit SafeMath redundant."
+  },
+  {
+    "id": "q06",
+    "question": "Is uint arithmetic vulnerable to overflow without SafeMath on Solidity 0.7.6?",
+    "version": "0.7.6",
+    "patternId": "pattern-safemath",
+    "truth": {
+      "status": "settled",
+      "stance": "unsafe",
+      "controllingClaimIds": ["claim-safemath-pre08"],
+      "staleClaimIds": []
+    },
+    "trap": "Solidity 0.7.6 does not check arithmetic by default; omitting SafeMath makes the contract vulnerable to silent wrapping."
+  },
+  {
+    "id": "q07",
+    "question": "Is vanilla ERC-4626 implementation safe against first depositor inflation attacks on 0.8.19?",
+    "version": "0.8.19",
+    "patternId": "pattern-erc4626",
+    "truth": {
+      "status": "settled",
+      "stance": "unsafe",
+      "controllingClaimIds": ["claim-erc4626-unprotected"],
+      "staleClaimIds": []
+    },
+    "trap": "Without virtual offset or initial dead shares, early donations inflate exchange rates and steal subsequent deposits."
+  },
+  {
+    "id": "q08",
+    "question": "How do virtual shares protect ERC-4626 vaults on Solidity 0.8.24?",
+    "version": "0.8.24",
+    "patternId": "pattern-erc4626",
+    "truth": {
+      "status": "settled",
+      "stance": "safe",
+      "controllingClaimIds": ["claim-erc4626-virtual-shares"],
+      "staleClaimIds": ["claim-erc4626-unprotected"]
+    },
+    "trap": "OpenZeppelin v4.9+ introduced virtual assets and shares offset, solving first-depositor inflation attacks."
+  },
+  {
+    "id": "q09",
+    "question": "Can I check require(tx.origin == owner) for access control on Solidity 0.8.28?",
+    "version": "0.8.28",
+    "patternId": "pattern-txorigin",
+    "truth": {
+      "status": "settled",
+      "stance": "unsafe",
+      "controllingClaimIds": ["claim-txorigin-forbidden"],
+      "staleClaimIds": []
+    },
+    "trap": "Stable control: tx.origin has always been vulnerable to phishing attacks across every Solidity version without change."
+  },
+  {
+    "id": "q10",
+    "question": "Can I check require(tx.origin == owner) on Solidity 0.4.24?",
+    "version": "0.4.24",
+    "patternId": "pattern-txorigin",
+    "truth": {
+      "status": "settled",
+      "stance": "unsafe",
+      "controllingClaimIds": ["claim-txorigin-forbidden"],
+      "staleClaimIds": []
+    },
+    "trap": "Stable control: tests that the agent does not invent drift or change where guidance remained strictly constant."
+  },
+  {
+    "id": "q11",
+    "question": "Should custom tokens use send() or call() for fee distribution on 0.8.20?",
+    "version": "0.8.20",
+    "patternId": "pattern-transfer",
+    "truth": {
+      "status": "settled",
+      "stance": "deprecated",
+      "controllingClaimIds": ["claim-transfer-2019"],
+      "staleClaimIds": ["claim-transfer-2016"]
+    },
+    "trap": "send() shares the exact same 2300 gas stipend restriction as transfer(), so it is equally deprecated."
+  },
+  {
+    "id": "q12",
+    "question": "What is the security verdict for reentrancy guards on Solidity 0.8.28 when receiving ETH?",
+    "version": "0.8.28",
+    "patternId": "pattern-transfer",
+    "truth": {
+      "status": "settled",
+      "stance": "deprecated",
+      "controllingClaimIds": ["claim-transfer-2019"],
+      "staleClaimIds": ["claim-transfer-2016"]
+    },
+    "trap": "Pairing .call{value: ...} with explicit nonReentrant guards is the controlling recommendation overruling 2300 gas."
+  },
+  {
+    "id": "q13",
+    "question": "Is Move bytecode verification safe on Aptos blockchain?",
+    "version": "0.8.28",
+    "patternId": "unknown",
+    "truth": {
+      "status": "out_of_scope",
+      "stance": "unknown",
+      "controllingClaimIds": [],
+      "staleClaimIds": []
+    },
+    "trap": "Out of scope boundary test: tests that non-Solidity or unsupported concepts trigger clean out_of_scope status."
+  }
+]

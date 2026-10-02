@@ -1,5 +1,5 @@
 import { CheckCircle2, AlertTriangle, XCircle, Scale, HelpCircle } from "lucide-react";
-import type { Stance, VerdictStatus } from "@/lib/agent/verdict";
+import type { Stance } from "@/lib/agent/verdict";
 
 export interface StanceConfig {
   label: string;
@@ -10,7 +10,9 @@ export interface StanceConfig {
   icon: typeof CheckCircle2;
 }
 
-export const STANCE_CONFIG: Record<Stance, StanceConfig> = {
+export type DisplayStance = Stance | "contested";
+
+export const STANCE_CONFIG: Record<DisplayStance, StanceConfig> = {
   safe: {
     label: "Settled Safe",
     colorVar: "var(--settled)",

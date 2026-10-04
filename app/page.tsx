@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { ArrowRight, ShieldCheck, GitCompare, ExternalLink, Terminal, Shield } from "lucide-react";
+import { ArrowRight, ExternalLink, Terminal, Shield } from "lucide-react";
 import { Composer } from "@/components/Composer";
 import { VerdictCard } from "@/components/VerdictCard";
 import { DocketTimeline } from "@/components/DocketTimeline";
@@ -174,224 +174,231 @@ export default function HomePage() {
 
       {/* Main Content Area */}
       <main className="flex-1 flex flex-col items-center">
-        {/* Hero Section */}
-        <section className="w-full max-w-4xl mx-auto px-4 sm:px-6 pt-16 sm:pt-24 pb-12 sm:pb-16 flex flex-col items-center text-center">
-          {/* Badge */}
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5  border border-hairline bg-surface shadow-sm text-xs text-text-2 mb-6">
-            <span className="w-2 h-2  bg-settled animate-pulse" />
-            <span className="font-mono text-[11px] uppercase tracking-wider text-text font-medium">
-              Case-Law Architecture
-            </span>
-            <span className="text-text-2/40">·</span>
-            <span>Sanity Context Agent</span>
-          </div>
-
-          {/* Headline */}
-          <h1 className="font-serif text-4xl sm:text-6xl lg:text-7xl font-normal tracking-[-0.03em] leading-[1.1] mb-6 max-w-3xl">
-            Security advice goes stale. Precedent keeps the docket.
-          </h1>
-          <p className="text-text-2 text-base sm:text-lg max-w-xl mb-10 leading-relaxed font-normal">
-            Every Solidity security claim has a date and compiler version. Newer rulings overrule older ones so you never follow guidance that was true in 2019 and dangerous today.
-          </p>
-
-          {/* Precision Command Composer */}
-          <Composer onSearch={handleSearch} isLoading={isLoading} />
-        </section>
-
-        {/* Results Workspace: Verdict Card & Docket Timeline */}
-        {(isLoading || verdict || error) && (
-          <section className="w-full max-w-5xl mx-auto px-4 sm:px-6 pb-20">
-            {error ? (
-              <ErrorCard message={error} onRetry={() => setError(null)} />
-            ) : isLoading ? (
-              <div className="w-full bg-surface border border-hairline  p-8 sm:p-10  flex flex-col gap-5">
-                <div className="flex items-center justify-between border-b border-hairline pb-4">
-                  <div className="h-5 w-36 bg-surface-2  animate-pulse" />
-                  <div className="h-5 w-24 bg-surface-2  animate-pulse" />
+        
+        {/* Impeccable Hero Section */}
+        <section className="w-full border-b border-hairline bg-surface">
+          <div className="max-w-[1440px] mx-auto">
+            <div className="grid grid-cols-1 lg:grid-cols-12 border-l border-r border-hairline min-h-[60vh]">
+              
+              {/* Left Column: Typography & Input */}
+              <div className="lg:col-span-8 p-8 sm:p-12 lg:p-20 flex flex-col justify-center border-b lg:border-b-0 lg:border-r border-hairline">
+                <div className="inline-flex items-center gap-3 mb-8">
+                  <span className="w-2 h-2 bg-text"></span>
+                  <span className="font-mono text-[11px] uppercase tracking-widest text-text">
+                    Context-Aware Case Law
+                  </span>
                 </div>
-                <div className="h-10 w-4/5 bg-surface-2  animate-pulse my-2" />
-                <div className="h-4 w-3/5 bg-surface-2  animate-pulse" />
-                <div className="pt-6 border-t border-hairline flex flex-wrap items-center justify-between gap-4">
-                  <div className="flex items-center gap-2 text-xs font-mono text-text-2">
-                    <Terminal className="w-4 h-4 text-action" />
-                    <span>Resolving case law via Sanity Context MCP endpoints...</span>
-                  </div>
-                  <span className="text-xs font-mono text-action animate-pulse">
-                    Computing Supersession Graph
+                
+                <h1 className="font-serif text-5xl sm:text-7xl lg:text-[5.5rem] font-normal tracking-tight leading-[1.05] mb-8 text-text">
+                  Security advice goes stale. <br className="hidden sm:block" />
+                  <span className="text-text-3">Precedent keeps the docket.</span>
+                </h1>
+                
+                <p className="text-text-2 text-base sm:text-lg max-w-2xl mb-12 leading-relaxed font-sans">
+                  Every Solidity security claim has a date and compiler version. Newer rulings overrule older ones so you never follow guidance that was true in 2019 and dangerous today.
+                </p>
+                
+                <div className="max-w-2xl w-full">
+                  <Composer onSearch={handleSearch} isLoading={isLoading} />
+                </div>
+              </div>
+
+              {/* Right Column: Metadata & Structural Info */}
+              <div className="lg:col-span-4 bg-bg flex flex-col">
+                <div className="flex-1 p-8 sm:p-12 border-b border-hairline flex flex-col justify-center">
+                  <h3 className="font-mono text-xs uppercase tracking-widest text-text-2 mb-6">
+                    System Architecture
+                  </h3>
+                  <ul className="space-y-6 font-mono text-sm text-text">
+                    <li className="flex flex-col gap-1">
+                      <span className="text-text-3 text-[10px]">01 // ENGINE</span>
+                      <span>Sanity Context MCP</span>
+                    </li>
+                    <li className="flex flex-col gap-1">
+                      <span className="text-text-3 text-[10px]">02 // DATASET</span>
+                      <span>Verified Claim Graph</span>
+                    </li>
+                    <li className="flex flex-col gap-1">
+                      <span className="text-text-3 text-[10px]">03 // AGENT</span>
+                      <span>Vercel AI SDK 6 Loop</span>
+                    </li>
+                    <li className="flex flex-col gap-1">
+                      <span className="text-text-3 text-[10px]">04 // GUARANTEE</span>
+                      <span>Zero Hallucination</span>
+                    </li>
+                  </ul>
+                </div>
+                <div className="p-8 sm:p-12 flex items-center justify-between font-mono text-[10px] text-text-3 uppercase tracking-widest">
+                  <span>Status: Active</span>
+                  <span className="flex items-center gap-2">
+                    <span className="w-1.5 h-1.5 rounded-none bg-settled animate-pulse"></span>
+                    Online
                   </span>
                 </div>
               </div>
-            ) : verdict?.status === "out_of_scope" ? (
-              <OutOfScopeCard
-                onSelectPattern={(prompt) => {
-                  handleSearch(prompt, "0.8.28");
-                }}
-              />
-            ) : verdict ? (
-              <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-                {/* Left Column: Sticky Verdict Card (lg: 5 cols) */}
-                <div className="lg:col-span-5 lg:sticky lg:top-24">
-                  <VerdictCard
-                    verdict={verdict}
-                    onOpenSources={() => setIsSourcesOpen(true)}
-                    onOpenTrace={() => setIsTraceOpen(true)}
-                    sourceCount={uniqueSources.length}
-                  />
-                </div>
 
-                {/* Right Column: Docket Timeline (lg: 7 cols) */}
-                <div className="lg:col-span-7">
-                  <DocketTimeline
-                    claims={claims}
-                    controllingClaimIds={verdict.controllingClaimIds}
-                    overruledClaimIds={verdict.overruledClaimIds}
-                    isResolved={!isLoading}
+            </div>
+          </div>
+        </section>
+
+        
+        {/* Results Workspace: Verdict Card & Docket Timeline */}
+        {(isLoading || verdict || error) && (
+          <section className="w-full border-b border-hairline bg-bg">
+            <div className="max-w-[1440px] mx-auto border-l border-r border-hairline min-h-[40vh] p-8 sm:p-12 lg:p-20">
+              <div className="max-w-4xl mx-auto">
+                {error ? (
+                  <ErrorCard message={error} onRetry={() => setError(null)} />
+                ) : isLoading ? (
+                  <div className="w-full bg-surface border border-hairline p-8 flex flex-col gap-5">
+                    <div className="flex items-center justify-between border-b border-hairline pb-4">
+                      <div className="h-5 w-36 bg-surface-2 animate-pulse" />
+                      <div className="h-5 w-24 bg-surface-2 animate-pulse" />
+                    </div>
+                    <div className="h-10 w-4/5 bg-surface-2 animate-pulse my-2" />
+                    <div className="h-4 w-3/5 bg-surface-2 animate-pulse" />
+                    <div className="pt-6 border-t border-hairline flex flex-wrap items-center justify-between gap-4">
+                      <div className="flex items-center gap-2 text-xs font-mono text-text-2">
+                        <Terminal className="w-4 h-4 text-text" />
+                        <span>Resolving case law via Sanity Context MCP endpoints...</span>
+                      </div>
+                      <span className="text-xs font-mono text-text animate-pulse">
+                        Computing Supersession Graph
+                      </span>
+                    </div>
+                  </div>
+                ) : verdict?.status === "out_of_scope" ? (
+                  <OutOfScopeCard
+                    onSelectPattern={(prompt) => {
+                      handleSearch(prompt, "0.8.28");
+                    }}
                   />
-                </div>
+                ) : verdict ? (
+                  <div className="flex flex-col gap-16">
+                    <VerdictCard
+                      verdict={verdict}
+                      onOpenSources={() => setIsSourcesOpen(true)}
+                      onOpenTrace={() => setIsTraceOpen(true)}
+                      sourceCount={uniqueSources.length}
+                    />
+                    <DocketTimeline
+                      claims={claims}
+                      controllingClaimIds={verdict.controllingClaimIds}
+                      overruledClaimIds={verdict.overruledClaimIds}
+                      isResolved={true}
+                    />
+                  </div>
+                ) : null}
               </div>
-            ) : null}
+            </div>
           </section>
         )}
 
-        {/* Asymmetric Architecture Section (Eliminating AI Slop) */}
-        <section className="w-full border-t border-hairline bg-surface/20 py-20 px-4 sm:px-6">
-          <div className="max-w-5xl mx-auto">
-            {/* Section Header */}
-            <div className="max-w-xl mb-12">
-              <span className="text-xs font-mono uppercase tracking-widest text-action font-semibold">
-                Core Methodology
-              </span>
-              <h2 className="font-serif text-3xl sm:text-4xl tracking-tight mt-2 mb-3">
-                How Precedent resolves conflicting advice
-              </h2>
-              <p className="text-sm sm:text-base text-text-2 leading-relaxed">
-                Traditional keyword search retrieves the most frequently repeated historical text. Precedent computes controlling authority based on language evolution.
-              </p>
-            </div>
-
-            {/* Asymmetrical Grid: 65% Interactive Demonstration + 35% Technical Architecture */}
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-stretch">
-              {/* Major Feature Showcase (7 cols): The Temporal Supersession Graph */}
-              <div className="lg:col-span-7 p-7  bg-surface border border-hairline  flex flex-col justify-between">
-                <div>
-                  <div className="flex items-center justify-between mb-4">
-                    <span className="text-[11px] font-mono uppercase tracking-wider text-action font-semibold">
-                      Live Precedent Case Law Demo
-                    </span>
-                    <span className="text-[11px] font-mono text-text-2/70">ETH Transfer Docket</span>
-                  </div>
-
-                  <h3 className="font-serif text-xl sm:text-2xl text-text mb-3">
-                    Explicit Temporal Supersession
-                  </h3>
-                  <p className="text-sm text-text-2 leading-relaxed mb-6">
-                    In 2016, ConsenSys recommended <code className="font-mono text-xs px-1.5 py-0.5  bg-surface-2 text-text">.transfer()</code> because its 2300 gas stipend protected against reentrancy. In 2019, EIP-1884 repriced SLOAD, breaking that assumption. Precedent keeps both on the record, but strikes the old rule:
-                  </p>
-
-                  {/* Simulated Docket Transcript Card */}
-                  <div className="space-y-3 font-mono text-xs p-4 -row bg-surface-2/40 border border-hairline">
-                    <div className="relative p-3  bg-surface/80 border border-hairline text-text-2/60">
-                      <div className="flex items-center justify-between mb-1">
-                        <span className="text-[10px] text-text-2/80">2016 · solc 0.4.x</span>
-                        <span className="text-[9px] uppercase px-1.5 py-0.5  bg-text-2/10 text-text-2/70">Overruled</span>
-                      </div>
-                      <p className="line-through decoration-text-2 text-text-2/50">
-                        Recommend transfer() to forward Ether; 2300 gas limits reentrancy.
-                      </p>
-                    </div>
-
-                    <div className="p-3  bg-surface border border-action/40 shadow-sm text-text">
-                      <div className="flex items-center justify-between mb-1">
-                        <span className="text-[10px] text-action font-semibold">2019 · solc ≥ 0.6.0 · EIP-1884</span>
-                        <span className="text-[9px] uppercase px-1.5 py-0.5  bg-action/20 text-action font-bold">Controlling</span>
-                      </div>
-                      <p className="text-text font-sans text-xs leading-relaxed">
-                        Avoid transfer(); gas repricing breaks 2300 gas. Use call() with reentrancy protection.
-                      </p>
-                    </div>
-                  </div>
-                </div>
-
-                <div className="pt-6 mt-6 border-t border-hairline flex items-center justify-between text-xs text-text-2">
-                  <span>Newer primary rulings supersede older ones.</span>
-                  <Link href="/method" className="text-action hover:underline inline-flex items-center gap-1 font-medium">
-                    <span>Read algorithm</span>
-                    <ArrowRight className="w-3.5 h-3.5" />
-                  </Link>
-                </div>
-              </div>
-
-              {/* Technical Capabilities Stack (5 cols) */}
-              <div className="lg:col-span-5 flex flex-col gap-6">
-                {/* Capability 1: Sanity Context MCP */}
-                <div className="p-6  bg-surface border border-hairline  flex flex-col justify-between flex-1">
-                  <div>
-                    <div className="w-9 h-9  bg-surface-2 border border-hairline text-text flex items-center justify-center mb-3">
-                      <GitCompare className="w-4 h-4 stroke-[2]" />
-                    </div>
-                    <h4 className="font-semibold text-base mb-1.5">Dual Sanity Context Endpoints</h4>
-                    <p className="text-xs sm:text-sm text-text-2 leading-relaxed">
-                      Endpoint A connects the Knowledge Base for semantic source exploration; Endpoint B executes structured GROQ queries over the verified supersession graph.
+        {/* Technical Architecture Showcase */}
+        {!isLoading && !verdict && !error && (
+          <section className="w-full border-b border-hairline bg-bg">
+            <div className="max-w-[1440px] mx-auto border-l border-r border-hairline">
+              <div className="grid grid-cols-1 lg:grid-cols-12 divide-y lg:divide-y-0 lg:divide-x divide-hairline">
+                
+                <div className="lg:col-span-6 p-8 sm:p-12 lg:p-16 bg-surface">
+                  <div className="mb-8">
+                    <h3 className="font-serif text-3xl mb-4 text-text tracking-tight">The Supersession Graph</h3>
+                    <p className="text-sm text-text-2 leading-relaxed max-w-md">
+                      When users search for a pattern, Precedent queries the Sanity Knowledge Base and structured dataset simultaneously via MCP to build an accurate timeline of advice.
                     </p>
                   </div>
-                  <div className="pt-4 border-t border-hairline text-[11px] font-mono text-text-2/70">
-                    Discovered at runtime via MCP
+
+                  <div className="border border-hairline bg-surface-2 p-6 flex flex-col gap-6 relative">
+                    {/* Visual Supersession Representation */}
+                    <div className="absolute left-6 top-6 bottom-6 w-px bg-hairline" />
+                    
+                    <div className="relative pl-6">
+                      <div className="absolute left-[-2px] top-1.5 w-1 h-1 bg-text-3" />
+                      <div className="text-[10px] font-mono text-text-3 mb-1">solc 0.4.x</div>
+                      <div className="text-xs text-text-2 line-through decoration-text-3">Recommend transfer() for gas limits</div>
+                    </div>
+                    
+                    <div className="relative pl-6">
+                      <div className="absolute left-[-2px] top-1.5 w-1 h-1 bg-settled" />
+                      <div className="text-[10px] font-mono text-settled mb-1">solc &gt;= 0.6.0 (EIP-1884)</div>
+                      <div className="text-xs text-text">Use call() with reentrancy guard</div>
+                    </div>
                   </div>
                 </div>
 
-                {/* Capability 2: Zero-Hallucination Boundary */}
-                <div className="p-6  bg-surface border border-hairline  flex flex-col justify-between flex-1">
+                <div className="lg:col-span-6 p-8 sm:p-12 lg:p-16 flex flex-col justify-between">
                   <div>
-                    <div className="w-9 h-9  bg-surface-2 border border-hairline text-text flex items-center justify-center mb-3">
-                      <ShieldCheck className="w-4 h-4 stroke-[2]" />
-                    </div>
-                    <h4 className="font-semibold text-base mb-1.5">ID-Only Citation Contract</h4>
-                    <p className="text-xs sm:text-sm text-text-2 leading-relaxed">
-                      The agent outputs document IDs only. The Next.js API re-validates that every cited ID exists in Sanity before hydrating text. The model cannot hallucinate sources.
+                    <h3 className="font-serif text-3xl mb-4 text-text tracking-tight">Zero-Hallucination Pipeline</h3>
+                    <p className="text-sm text-text-2 leading-relaxed max-w-md mb-8">
+                      The AI agent operates under strict constraints, returning only verified Sanity document IDs.
                     </p>
+                    
+                    <div className="flex flex-col gap-4 font-mono text-[11px] uppercase tracking-wider text-text-2">
+                      <div className="flex items-center gap-3">
+                        <span className="w-4 border-t border-text-3" />
+                        <span>1. Extract Query Intent</span>
+                      </div>
+                      <div className="flex items-center gap-3">
+                        <span className="w-4 border-t border-text-3" />
+                        <span>2. Query Endpoint A (Raw Sources)</span>
+                      </div>
+                      <div className="flex items-center gap-3">
+                        <span className="w-4 border-t border-text-3" />
+                        <span>3. Query Endpoint B (Verified Claims)</span>
+                      </div>
+                      <div className="flex items-center gap-3 text-text">
+                        <span className="w-4 border-t border-text" />
+                        <span>4. Deterministic Verdict (IDs Only)</span>
+                      </div>
+                    </div>
                   </div>
-                  <div className="pt-4 border-t border-hairline text-[11px] font-mono text-text-2/70">
-                    Server-side deterministic validation
+                  
+                  <div className="mt-12 pt-6 border-t border-hairline flex items-center justify-between text-xs text-text-2">
+                    <span>Server-side verification</span>
+                    <Link href="/method" className="text-text hover:underline flex items-center gap-1">
+                      Read Methodology <ArrowRight className="w-3 h-3" />
+                    </Link>
                   </div>
                 </div>
+
               </div>
             </div>
-          </div>
-        </section>
+          </section>
+        )}
 
         {/* Benchmark Teaser Section */}
-        <section className="w-full py-20 px-4 sm:px-6 border-t border-hairline">
-          <div className="max-w-4xl mx-auto p-8 sm:p-10  bg-surface border border-hairline  flex flex-col sm:flex-row items-center justify-between gap-8">
-            <div className="max-w-xl text-left">
-              <div className="flex items-center gap-2 mb-2">
-                <span className="w-2 h-2  bg-action" />
-                <span className="text-xs font-mono uppercase tracking-widest text-action font-semibold">
-                  The Stale-Trap Benchmark
+        <section className="w-full bg-surface border-b border-hairline">
+          <div className="max-w-[1440px] mx-auto border-l border-r border-hairline p-8 sm:p-12 lg:p-20 flex flex-col lg:flex-row items-center justify-between gap-12">
+            <div className="max-w-2xl text-left">
+              <h3 className="font-serif text-3xl sm:text-4xl tracking-tight mb-4 text-text">
+                The Stale-Trap Benchmark
+              </h3>
+              <p className="text-base text-text-2 leading-relaxed mb-6">
+                Keyword searches return stale advice 30.8% of the time. Precedent achieved a 0.0% stale rate across 13 verified Solidity drift cases by explicitly walking the supersession graph.
+              </p>
+              <div className="flex flex-wrap items-center gap-6 font-mono text-[11px] uppercase tracking-widest text-text-3">
+                <span className="flex items-center gap-2">
+                  <span className="w-2 h-2 bg-settled"></span>
+                  Stale Rate: <strong className="text-text">0.0%</strong>
+                </span>
+                <span className="flex items-center gap-2">
+                  <span className="w-2 h-2 bg-text"></span>
+                  Citation Rate: <strong className="text-text">100%</strong>
                 </span>
               </div>
-              <h3 className="font-serif text-2xl sm:text-3xl tracking-tight mt-1 mb-2">
-                Measuring outdated advice elimination
-              </h3>
-              <p className="text-sm text-text-2 leading-relaxed mb-4">
-                We evaluated Keyword Search (30.8% stale), Knowledge Base Only (7.7% stale), and Precedent (0.0% stale) across 13 verified Solidity drift cases.
-              </p>
-              <div className="flex items-center gap-4 text-xs font-mono text-text-2">
-                <span>Stale Rate: <strong className="text-action">0.0%</strong></span>
-                <span>·</span>
-                <span>Citation Rate: <strong className="text-action">100%</strong></span>
-              </div>
             </div>
+            
             <Link
               href="/benchmark"
-              className="inline-flex items-center gap-2 px-6 py-3  bg-action-bg text-action-text font-mono text-xs uppercase tracking-widest hover:invert transition-all flex-shrink-0 active:scale-95"
+              className="inline-flex items-center justify-center gap-3 px-8 py-4 bg-text text-bg font-mono text-xs uppercase tracking-widest hover:invert transition-all flex-shrink-0"
             >
-              <span>View Benchmark Results</span>
-              <ArrowRight className="w-4 h-4 stroke-[2]" />
+              <span>View Benchmark</span>
+              <ArrowRight className="w-4 h-4" />
             </Link>
           </div>
         </section>
-      </main>
 
+      </main>
       {/* Slide-over Sheets */}
       <SourcesSheet
         isOpen={isSourcesOpen}

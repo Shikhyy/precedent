@@ -17,7 +17,7 @@ export function StanceBadge({ stance, className = "", size = "md" }: StanceBadge
 
   return (
     <span
-      className={`inline-flex items-center font-medium rounded-full border shadow-sm ${config.bgTint} ${config.textColor} ${config.borderColor} ${sizeClasses} ${className}`}
+      className={`inline-flex items-center font-medium  border  ${config.bgTint} ${config.textColor} ${config.borderColor} ${sizeClasses} ${className}`}
     >
       <Icon className="w-3.5 h-3.5 stroke-[2] flex-shrink-0" aria-hidden="true" />
       <span className="tracking-tight">{config.label}</span>

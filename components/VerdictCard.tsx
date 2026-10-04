@@ -33,7 +33,7 @@ export function VerdictCard({
   return (
     <article
       aria-labelledby="verdict-heading"
-      className="relative flex flex-col w-full bg-surface border border-hairline rounded-card shadow-[0_24px_48px_rgba(0,0,0,0.5),inset_0_1px_0_rgba(255,255,255,0.08)] p-6 sm:p-8 overflow-hidden transition-all duration-300"
+      className="relative flex flex-col w-full bg-surface border border-hairline   p-6 sm:p-8 overflow-hidden transition-all duration-300"
     >
       {/* Top subtle architectural rim highlight */}
       <div className="absolute inset-x-0 top-0 h-[1px] bg-gradient-to-r from-transparent via-white/15 to-transparent pointer-events-none" />
@@ -52,7 +52,7 @@ export function VerdictCard({
           <StanceBadge stance={verdict.stance} size="md" />
 
           {/* Version badge */}
-          <span className="font-mono text-xs px-3 py-1 rounded-full border border-hairline bg-surface-2/80 text-text-2">
+          <span className="font-mono text-xs px-3 py-1  border border-hairline bg-surface-2/80 text-text-2">
             solc {verdict.version.solc || "latest"}
             {verdict.version.assumedLatest && " (latest)"}
             {verdict.version.evm && ` · ${verdict.version.evm}`}
@@ -102,7 +102,7 @@ export function VerdictCard({
             <button
               type="button"
               onClick={onOpenSources}
-              className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-medium border border-hairline bg-surface-2/60 text-text-2 hover:text-text hover:border-action/40 transition-colors focus-visible:outline-action"
+              className="inline-flex items-center gap-1.5 px-3 py-1.5  text-xs font-medium border border-hairline bg-surface-2/60 text-text-2 hover:text-text hover:border-text/40 transition-colors focus-visible:outline-action"
             >
               <BookOpen className="w-3.5 h-3.5 stroke-[1.75]" />
               <span>
@@ -115,7 +115,7 @@ export function VerdictCard({
             <button
               type="button"
               onClick={onOpenTrace}
-              className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-medium border border-hairline bg-surface-2/60 text-text-2 hover:text-text hover:border-action/40 transition-colors focus-visible:outline-action"
+              className="inline-flex items-center gap-1.5 px-3 py-1.5  text-xs font-medium border border-hairline bg-surface-2/60 text-text-2 hover:text-text hover:border-text/40 transition-colors focus-visible:outline-action"
             >
               <Activity className="w-3.5 h-3.5 stroke-[1.75]" />
               <span>Trace Log</span>
@@ -126,7 +126,7 @@ export function VerdictCard({
             type="button"
             onClick={handleShare}
             aria-label="Share ruling link"
-            className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-medium border border-hairline bg-surface-2/60 text-text-2 hover:text-text hover:border-action/40 transition-colors focus-visible:outline-action"
+            className="inline-flex items-center gap-1.5 px-3 py-1.5  text-xs font-medium border border-hairline bg-surface-2/60 text-text-2 hover:text-text hover:border-text/40 transition-colors focus-visible:outline-action"
           >
             {copied ? (
               <>

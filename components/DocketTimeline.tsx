@@ -25,7 +25,7 @@ export function DocketTimeline({
 
   if (claims.length === 0) {
     return (
-      <div className="flex flex-col items-center justify-center p-12 text-center border border-dashed border-hairline rounded-card bg-surface/40 text-text-2">
+      <div className="flex flex-col items-center justify-center p-12 text-center border border-dashed border-hairline -card bg-surface/40 text-text-2">
         <History className="w-8 h-8 stroke-[1.25] mb-3 opacity-50" />
         <p className="text-sm font-medium text-text">No Historical Claims Found</p>
         <p className="text-xs text-text-2/70 max-w-sm mt-1 leading-relaxed">
@@ -45,9 +45,9 @@ export function DocketTimeline({
   return (
     <section aria-label="Docket Timeline" className="relative w-full">
       {/* Docket Header */}
-      <div className="flex items-center justify-between mb-6 pb-2 border-b border-hairline/60 px-1">
+      <div className="flex items-center justify-between mb-6 pb-2 border-b border-hairline px-1">
         <div className="flex items-center gap-2">
-          <History className="w-4 h-4 text-action" />
+          <History className="w-4 h-4 text-text" />
           <h3 className="text-xs font-mono uppercase tracking-widest text-text font-semibold">
             Docket Proceedings ({claims.length} Records)
           </h3>
@@ -87,9 +87,9 @@ export function DocketTimeline({
             >
               {/* Timeline Node Circle */}
               <div
-                className={`absolute -left-[31px] sm:-left-[39px] top-2 w-3.5 h-3.5 rounded-full border-2 border-surface transition-all ${
+                className={`absolute -left-[31px] sm:-left-[39px] top-2 w-3.5 h-3.5  border-2 border-surface transition-all ${
                   isControlling
-                    ? "ring-4 ring-action/25 bg-action"
+                    ? " ring-action/25 bg-text"
                     : isOverruled
                     ? "bg-text-2/40"
                     : "bg-surface-2"
@@ -107,9 +107,9 @@ export function DocketTimeline({
 
               {/* Claim Card Row */}
               <div
-                className={`relative rounded-row p-5 border transition-all duration-300 ${
+                className={`relative  p-5 border transition-all duration-300 ${
                   isControlling
-                    ? "bg-surface border-action/50 shadow-[0_8px_24px_rgba(0,0,0,0.3),inset_0_1px_0_rgba(255,255,255,0.08)] ring-1 ring-action/20"
+                    ? "bg-surface border-text   ring-action/20"
                     : "bg-surface/60 border-hairline hover:border-hairline/80 hover:bg-surface/80"
                 }`}
               >
@@ -130,13 +130,13 @@ export function DocketTimeline({
                     <span className="text-xs font-mono font-medium text-text-2">{dateStr}</span>
                     <StanceBadge stance={claim.stance} size="sm" />
                     {isControlling && (
-                      <span className="inline-flex items-center gap-1 text-[10px] font-mono uppercase tracking-wider px-2.5 py-0.5 rounded-full bg-action/15 text-action border border-action/30 font-semibold">
+                      <span className="inline-flex items-center gap-1 text-[10px] font-mono uppercase tracking-wider px-2.5 py-0.5  bg-surface text-text border border-text font-semibold">
                         <Award className="w-3 h-3" />
                         <span>Controlling Precedent</span>
                       </span>
                     )}
                     {isOverruled && (
-                      <span className="inline-flex items-center gap-1 text-[10px] font-mono uppercase tracking-wider px-2 py-0.5 rounded-full bg-text-2/15 text-text-2 border border-hairline">
+                      <span className="inline-flex items-center gap-1 text-[10px] font-mono uppercase tracking-wider px-2 py-0.5  bg-text-2/15 text-text-2 border border-hairline">
                         <ShieldAlert className="w-3 h-3" />
                         <span>Overruled</span>
                       </span>
@@ -145,7 +145,7 @@ export function DocketTimeline({
 
                   {/* Version Scope */}
                   {(claim.fromVersion != null || claim.toVersion != null) && (
-                    <span className="text-[11px] font-mono px-2 py-0.5 rounded bg-surface-2/60 border border-hairline/50 text-text-2/80">
+                    <span className="text-[11px] font-mono px-2 py-0.5 bg-surface-2/60 border border-hairline text-text-2/80">
                       {claim.fromVersion != null ? `solc ≥ ${parseVersionKey(claim.fromVersion)}` : ""}
                       {claim.fromVersion != null && claim.toVersion != null ? " · " : ""}
                       {claim.toVersion != null ? `solc ≤ ${parseVersionKey(claim.toVersion)}` : ""}
@@ -160,10 +160,10 @@ export function DocketTimeline({
 
                 {/* Source Attribution */}
                 {claim.source && (
-                  <div className="flex items-center justify-between text-xs text-text-2 pt-3 border-t border-hairline/60">
+                  <div className="flex items-center justify-between text-xs text-text-2 pt-3 border-t border-hairline">
                     <div className="flex items-center gap-2 truncate max-w-[280px]">
                       {claim.source.kind && (
-                        <span className="font-mono text-[10px] uppercase tracking-wider px-1.5 py-0.5 rounded bg-surface-2 text-text-2/70 border border-hairline/40">
+                        <span className="font-mono text-[10px] uppercase tracking-wider px-1.5 py-0.5 bg-surface-2 text-text-2/70 border border-hairline">
                           {claim.source.kind}
                         </span>
                       )}
@@ -177,7 +177,7 @@ export function DocketTimeline({
                       href={claim.source.url}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center gap-1 text-action hover:underline ml-2 flex-shrink-0 font-medium"
+                      className="inline-flex items-center gap-1 text-text hover:underline ml-2 flex-shrink-0 font-medium"
                     >
                       <span>Primary Record</span>
                       <ExternalLink className="w-3 h-3 stroke-[1.75]" />

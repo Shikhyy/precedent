@@ -95,7 +95,7 @@ export function Composer({
       {/* Precision Command Composer */}
       <form
         onSubmit={handleSubmit}
-        className="group relative flex items-center bg-surface/90 vibrancy border border-hairline rounded-composer shadow-[0_20px_50px_rgba(0,0,0,0.5),inset_0_1px_0_rgba(255,255,255,0.12)] p-2 transition-all duration-300 focus-within:border-action/60 focus-within:ring-2 focus-within:ring-action/20"
+        className="group relative flex items-center bg-surface border border-hairline p-1 transition-colors focus-within:border-text"
       >
         {/* Leading Search Icon */}
         <div className="pl-3.5 pr-2 text-text-2/80 group-focus-within:text-action transition-colors">
@@ -110,7 +110,7 @@ export function Composer({
           onChange={(e) => setQuestion(e.target.value)}
           placeholder='Ask a case-law question, e.g. "Is transfer() safe on 0.8.28?"'
           disabled={isLoading}
-          className="flex-1 bg-transparent text-text placeholder:text-text-2/60 text-sm sm:text-base px-2 py-3 focus:outline-none disabled:opacity-50 tracking-[-0.01em]"
+          className="flex-1 bg-transparent text-text placeholder:text-text-2/60 text-sm sm:text-base px-2 py-3 text-sm focus:outline-none disabled:opacity-50 tracking-[-0.01em]"
         />
 
         {/* Keyboard shortcut hint */}
@@ -127,7 +127,7 @@ export function Composer({
               onChange={(e) => setVersion(e.target.value)}
               disabled={isLoading}
               aria-label="Solidity compiler version"
-              className="appearance-none bg-surface-2/80 hover:bg-surface-2 text-text text-xs font-mono font-medium pl-3 pr-7 py-2.5 rounded-input border border-hairline focus:outline-none focus:border-action cursor-pointer transition-colors disabled:opacity-50"
+              className="appearance-none bg-surface-2 hover:bg-surface-2 text-text text-[11px] font-mono pl-3 pr-7 py-2.5 border border-hairline cursor-pointer"
             >
               {POPULAR_SOLC_VERSIONS.map((v) => (
                 <option key={v} value={v}>
@@ -145,7 +145,7 @@ export function Composer({
               onChange={(e) => setEvm(e.target.value)}
               disabled={isLoading}
               aria-label="Target EVM fork"
-              className="appearance-none bg-surface-2/80 hover:bg-surface-2 text-text text-xs font-mono font-medium pl-3 pr-7 py-2.5 rounded-input border border-hairline focus:outline-none focus:border-action cursor-pointer transition-colors disabled:opacity-50"
+              className="appearance-none bg-surface-2 hover:bg-surface-2 text-text text-[11px] font-mono pl-3 pr-7 py-2.5 border border-hairline cursor-pointer"
             >
               <option value="">EVM: Default</option>
               {EVM_FORKS.map((f) => (
@@ -162,7 +162,7 @@ export function Composer({
             type="submit"
             disabled={!question.trim() || isLoading}
             aria-label="Get ruling"
-            className="relative inline-flex items-center justify-center min-w-[44px] h-[40px] px-4 sm:px-5 rounded-full bg-action hover:brightness-110 text-white font-medium text-xs sm:text-sm shadow-[0_4px_16px_rgba(10,132,255,0.3),inset_0_1px_0_rgba(255,255,255,0.25)] transition-all active:scale-[0.98] disabled:opacity-40 disabled:cursor-not-allowed disabled:shadow-none"
+            className="relative inline-flex items-center justify-center min-w-[44px] h-[40px] px-4 sm:px-5 bg-action-bg text-action-text font-mono text-xs uppercase tracking-widest hover:invert transition-all disabled:opacity-40 disabled:cursor-not-allowed disabled:"
           >
             {isLoading ? (
               <Loader2 className="w-4 h-4 animate-spin" />
@@ -192,7 +192,7 @@ export function Composer({
                 type="button"
                 onClick={() => handleChipClick(pat)}
                 disabled={isLoading}
-                className="group inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-hairline bg-surface/70 hover:bg-surface-2 hover:border-action/40 text-text-2 hover:text-text transition-all duration-200 focus-visible:outline-action"
+                className="group inline-flex items-center gap-2 px-3 py-1.5 border border-hairline bg-surface hover:bg-surface-2 hover:border-text text-text-2 hover:text-text transition-all duration-200 focus-visible:outline-text"
               >
                 <span className={`w-1.5 h-1.5 rounded-full ${dotColor} transition-transform group-hover:scale-125`} />
                 <span className="font-medium text-[11px] tracking-tight">{pat.name}</span>

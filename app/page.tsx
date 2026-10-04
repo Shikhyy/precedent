@@ -128,12 +128,12 @@ export default function HomePage() {
   );
 
   return (
-    <div className="flex flex-col min-h-screen bg-bg text-text selection:bg-action/20">
+    <div className="flex flex-col min-h-screen bg-bg border-hairline text-text selection:bg-action/20">
       {/* Top Ambient Glow Line */}
       <div className="h-[1px] w-full bg-gradient-to-r from-transparent via-action/40 to-transparent pointer-events-none" />
 
       {/* Navigation Header */}
-      <header className="sticky top-0 z-40 w-full border-b border-hairline bg-bg/85 vibrancy">
+      <header className="sticky top-0 z-40 w-full border-b border-hairline bg-bg border-hairline/85 vibrancy">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
           <Link href="/" className="hover:opacity-95 transition-opacity">
             <Logo />
@@ -177,8 +177,8 @@ export default function HomePage() {
         {/* Hero Section */}
         <section className="w-full max-w-4xl mx-auto px-4 sm:px-6 pt-16 sm:pt-24 pb-12 sm:pb-16 flex flex-col items-center text-center">
           {/* Badge */}
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-hairline bg-surface shadow-sm text-xs text-text-2 mb-6">
-            <span className="w-2 h-2 rounded-full bg-settled animate-pulse" />
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5  border border-hairline bg-surface shadow-sm text-xs text-text-2 mb-6">
+            <span className="w-2 h-2  bg-settled animate-pulse" />
             <span className="font-mono text-[11px] uppercase tracking-wider text-text font-medium">
               Case-Law Architecture
             </span>
@@ -204,13 +204,13 @@ export default function HomePage() {
             {error ? (
               <ErrorCard message={error} onRetry={() => setError(null)} />
             ) : isLoading ? (
-              <div className="w-full bg-surface border border-hairline rounded-card p-8 sm:p-10 shadow-highlight flex flex-col gap-5">
-                <div className="flex items-center justify-between border-b border-hairline/60 pb-4">
-                  <div className="h-5 w-36 bg-surface-2 rounded-full animate-pulse" />
-                  <div className="h-5 w-24 bg-surface-2 rounded-full animate-pulse" />
+              <div className="w-full bg-surface border border-hairline  p-8 sm:p-10  flex flex-col gap-5">
+                <div className="flex items-center justify-between border-b border-hairline pb-4">
+                  <div className="h-5 w-36 bg-surface-2  animate-pulse" />
+                  <div className="h-5 w-24 bg-surface-2  animate-pulse" />
                 </div>
-                <div className="h-10 w-4/5 bg-surface-2 rounded-lg animate-pulse my-2" />
-                <div className="h-4 w-3/5 bg-surface-2 rounded animate-pulse" />
+                <div className="h-10 w-4/5 bg-surface-2  animate-pulse my-2" />
+                <div className="h-4 w-3/5 bg-surface-2  animate-pulse" />
                 <div className="pt-6 border-t border-hairline flex flex-wrap items-center justify-between gap-4">
                   <div className="flex items-center gap-2 text-xs font-mono text-text-2">
                     <Terminal className="w-4 h-4 text-action" />
@@ -272,7 +272,7 @@ export default function HomePage() {
             {/* Asymmetrical Grid: 65% Interactive Demonstration + 35% Technical Architecture */}
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-stretch">
               {/* Major Feature Showcase (7 cols): The Temporal Supersession Graph */}
-              <div className="lg:col-span-7 p-7 rounded-card bg-surface border border-hairline shadow-highlight flex flex-col justify-between">
+              <div className="lg:col-span-7 p-7  bg-surface border border-hairline  flex flex-col justify-between">
                 <div>
                   <div className="flex items-center justify-between mb-4">
                     <span className="text-[11px] font-mono uppercase tracking-wider text-action font-semibold">
@@ -285,25 +285,25 @@ export default function HomePage() {
                     Explicit Temporal Supersession
                   </h3>
                   <p className="text-sm text-text-2 leading-relaxed mb-6">
-                    In 2016, ConsenSys recommended <code className="font-mono text-xs px-1.5 py-0.5 rounded bg-surface-2 text-text">.transfer()</code> because its 2300 gas stipend protected against reentrancy. In 2019, EIP-1884 repriced SLOAD, breaking that assumption. Precedent keeps both on the record, but strikes the old rule:
+                    In 2016, ConsenSys recommended <code className="font-mono text-xs px-1.5 py-0.5  bg-surface-2 text-text">.transfer()</code> because its 2300 gas stipend protected against reentrancy. In 2019, EIP-1884 repriced SLOAD, breaking that assumption. Precedent keeps both on the record, but strikes the old rule:
                   </p>
 
                   {/* Simulated Docket Transcript Card */}
-                  <div className="space-y-3 font-mono text-xs p-4 rounded-row bg-surface-2/40 border border-hairline">
-                    <div className="relative p-3 rounded bg-surface/80 border border-hairline text-text-2/60">
+                  <div className="space-y-3 font-mono text-xs p-4 -row bg-surface-2/40 border border-hairline">
+                    <div className="relative p-3  bg-surface/80 border border-hairline text-text-2/60">
                       <div className="flex items-center justify-between mb-1">
                         <span className="text-[10px] text-text-2/80">2016 · solc 0.4.x</span>
-                        <span className="text-[9px] uppercase px-1.5 py-0.5 rounded bg-text-2/10 text-text-2/70">Overruled</span>
+                        <span className="text-[9px] uppercase px-1.5 py-0.5  bg-text-2/10 text-text-2/70">Overruled</span>
                       </div>
                       <p className="line-through decoration-text-2 text-text-2/50">
                         Recommend transfer() to forward Ether; 2300 gas limits reentrancy.
                       </p>
                     </div>
 
-                    <div className="p-3 rounded bg-surface border border-action/40 shadow-sm text-text">
+                    <div className="p-3  bg-surface border border-action/40 shadow-sm text-text">
                       <div className="flex items-center justify-between mb-1">
                         <span className="text-[10px] text-action font-semibold">2019 · solc ≥ 0.6.0 · EIP-1884</span>
-                        <span className="text-[9px] uppercase px-1.5 py-0.5 rounded bg-action/20 text-action font-bold">Controlling</span>
+                        <span className="text-[9px] uppercase px-1.5 py-0.5  bg-action/20 text-action font-bold">Controlling</span>
                       </div>
                       <p className="text-text font-sans text-xs leading-relaxed">
                         Avoid transfer(); gas repricing breaks 2300 gas. Use call() with reentrancy protection.
@@ -312,7 +312,7 @@ export default function HomePage() {
                   </div>
                 </div>
 
-                <div className="pt-6 mt-6 border-t border-hairline/60 flex items-center justify-between text-xs text-text-2">
+                <div className="pt-6 mt-6 border-t border-hairline flex items-center justify-between text-xs text-text-2">
                   <span>Newer primary rulings supersede older ones.</span>
                   <Link href="/method" className="text-action hover:underline inline-flex items-center gap-1 font-medium">
                     <span>Read algorithm</span>
@@ -324,9 +324,9 @@ export default function HomePage() {
               {/* Technical Capabilities Stack (5 cols) */}
               <div className="lg:col-span-5 flex flex-col gap-6">
                 {/* Capability 1: Sanity Context MCP */}
-                <div className="p-6 rounded-card bg-surface border border-hairline shadow-highlight flex flex-col justify-between flex-1">
+                <div className="p-6  bg-surface border border-hairline  flex flex-col justify-between flex-1">
                   <div>
-                    <div className="w-9 h-9 rounded-lg bg-action/10 text-action flex items-center justify-center mb-3">
+                    <div className="w-9 h-9  bg-surface-2 border border-hairline text-text flex items-center justify-center mb-3">
                       <GitCompare className="w-4 h-4 stroke-[2]" />
                     </div>
                     <h4 className="font-semibold text-base mb-1.5">Dual Sanity Context Endpoints</h4>
@@ -334,15 +334,15 @@ export default function HomePage() {
                       Endpoint A connects the Knowledge Base for semantic source exploration; Endpoint B executes structured GROQ queries over the verified supersession graph.
                     </p>
                   </div>
-                  <div className="pt-4 border-t border-hairline/60 text-[11px] font-mono text-text-2/70">
+                  <div className="pt-4 border-t border-hairline text-[11px] font-mono text-text-2/70">
                     Discovered at runtime via MCP
                   </div>
                 </div>
 
                 {/* Capability 2: Zero-Hallucination Boundary */}
-                <div className="p-6 rounded-card bg-surface border border-hairline shadow-highlight flex flex-col justify-between flex-1">
+                <div className="p-6  bg-surface border border-hairline  flex flex-col justify-between flex-1">
                   <div>
-                    <div className="w-9 h-9 rounded-lg bg-settled/10 text-settled flex items-center justify-center mb-3">
+                    <div className="w-9 h-9  bg-surface-2 border border-hairline text-text flex items-center justify-center mb-3">
                       <ShieldCheck className="w-4 h-4 stroke-[2]" />
                     </div>
                     <h4 className="font-semibold text-base mb-1.5">ID-Only Citation Contract</h4>
@@ -350,7 +350,7 @@ export default function HomePage() {
                       The agent outputs document IDs only. The Next.js API re-validates that every cited ID exists in Sanity before hydrating text. The model cannot hallucinate sources.
                     </p>
                   </div>
-                  <div className="pt-4 border-t border-hairline/60 text-[11px] font-mono text-text-2/70">
+                  <div className="pt-4 border-t border-hairline text-[11px] font-mono text-text-2/70">
                     Server-side deterministic validation
                   </div>
                 </div>
@@ -361,10 +361,10 @@ export default function HomePage() {
 
         {/* Benchmark Teaser Section */}
         <section className="w-full py-20 px-4 sm:px-6 border-t border-hairline">
-          <div className="max-w-4xl mx-auto p-8 sm:p-10 rounded-card bg-surface border border-hairline shadow-highlight flex flex-col sm:flex-row items-center justify-between gap-8">
+          <div className="max-w-4xl mx-auto p-8 sm:p-10  bg-surface border border-hairline  flex flex-col sm:flex-row items-center justify-between gap-8">
             <div className="max-w-xl text-left">
               <div className="flex items-center gap-2 mb-2">
-                <span className="w-2 h-2 rounded-full bg-action" />
+                <span className="w-2 h-2  bg-action" />
                 <span className="text-xs font-mono uppercase tracking-widest text-action font-semibold">
                   The Stale-Trap Benchmark
                 </span>
@@ -383,7 +383,7 @@ export default function HomePage() {
             </div>
             <Link
               href="/benchmark"
-              className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-action hover:brightness-110 text-white font-medium text-sm shadow-[0_4px_16px_rgba(10,132,255,0.3)] transition-all flex-shrink-0 active:scale-95"
+              className="inline-flex items-center gap-2 px-6 py-3  bg-action-bg text-action-text font-mono text-xs uppercase tracking-widest hover:invert transition-all flex-shrink-0 active:scale-95"
             >
               <span>View Benchmark Results</span>
               <ArrowRight className="w-4 h-4 stroke-[2]" />
@@ -408,9 +408,9 @@ export default function HomePage() {
       />
 
       {/* Production-Grade Legal Footer */}
-      <footer className="w-full border-t border-hairline py-12 px-4 sm:px-6 text-xs text-text-2 bg-bg">
+      <footer className="w-full border-t border-hairline py-12 px-4 sm:px-6 text-xs text-text-2 bg-bg border-hairline">
         <div className="max-w-6xl mx-auto flex flex-col gap-8">
-          <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6 pb-8 border-b border-hairline/60">
+          <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6 pb-8 border-b border-hairline">
             <Logo />
             <div className="flex flex-wrap items-center gap-6">
               <Link href="/method" className="hover:text-text transition-colors">

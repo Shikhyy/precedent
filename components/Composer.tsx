@@ -95,7 +95,7 @@ export function Composer({
       {/* Precision Command Composer */}
       <form
         onSubmit={handleSubmit}
-        className="group relative flex items-center bg-surface border border-hairline p-1 transition-colors focus-within:border-text"
+        className="group relative flex items-center glass-panel radiant-border rounded-[var(--r-composer)] p-2 transition-colors focus-within:border-text"
       >
         {/* Leading Search Icon */}
         <div className="pl-3.5 pr-2 text-text-2/80 group-focus-within:text-action transition-colors">
@@ -110,7 +110,7 @@ export function Composer({
           onChange={(e) => setQuestion(e.target.value)}
           placeholder='Ask a case-law question, e.g. "Is transfer() safe on 0.8.28?"'
           disabled={isLoading}
-          className="flex-1 bg-transparent text-text placeholder:text-text-2/60 text-sm sm:text-base px-2 py-3 text-sm focus:outline-none disabled:opacity-50 tracking-[-0.01em]"
+          className="flex-1 bg-transparent text-text placeholder:text-text-2/60 text-sm sm:text-base px-4 py-3 text-sm bg-transparent focus:outline-none disabled:opacity-50 tracking-[-0.01em]"
         />
 
         {/* Keyboard shortcut hint */}
@@ -162,7 +162,7 @@ export function Composer({
             type="submit"
             disabled={!question.trim() || isLoading}
             aria-label="Get ruling"
-            className="relative inline-flex items-center justify-center min-w-[44px] h-[40px] px-4 sm:px-5 bg-action-bg text-action-text font-mono text-xs uppercase tracking-widest hover:invert transition-all disabled:opacity-40 disabled:cursor-not-allowed disabled:"
+            className="relative inline-flex items-center justify-center min-w-[44px] h-[40px] px-4 sm:px-5 bg-action text-action-text font-mono text-[11px] uppercase tracking-widest rounded-lg hover:shadow-[0_0_16px_var(--action)] transition-all px-6 disabled:opacity-40 disabled:cursor-not-allowed disabled:"
           >
             {isLoading ? (
               <Loader2 className="w-4 h-4 animate-spin" />

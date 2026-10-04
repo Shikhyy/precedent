@@ -2,7 +2,7 @@ export function Logo({ className = "" }: { className?: string }) {
   return (
     <div className={`flex items-center gap-3 ${className}`}>
       {/* Precision Geometric Scale Mark */}
-      <div className="relative w-8 h-8 bg-surface border border-hairline flex items-center justify-center flex-shrink-0 group">
+      <div className="relative w-8 h-8 glass-panel radiant-border rounded-[10px] flex items-center justify-center flex-shrink-0 group">
         <svg
           viewBox="0 0 24 24"
           width="18"

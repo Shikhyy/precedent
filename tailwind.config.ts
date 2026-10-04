@@ -33,8 +33,8 @@ const config: Config = {
         input: "var(--r-input)",
       },
       fontFamily: {
-        sans: ["var(--font-inter)", "system-ui", "sans-serif"],
-        serif: ["var(--font-newsreader)", "serif"],
+        sans: ["var(--font-space-grotesk)", "system-ui", "sans-serif"],
+        serif: ["var(--font-space-grotesk)", "sans-serif"],
         mono: ["var(--font-jetbrains-mono)", "monospace"],
       },
       boxShadow: {

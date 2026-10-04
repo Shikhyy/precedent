@@ -1,18 +1,12 @@
+
 import type { Metadata } from "next";
-import { Inter, Newsreader, JetBrains_Mono } from "next/font/google";
+import { Space_Grotesk, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 
-const inter = Inter({
+const spaceGrotesk = Space_Grotesk({
   subsets: ["latin"],
-  variable: "--font-inter",
+  variable: "--font-space-grotesk",
   display: "swap",
-});
-
-const newsreader = Newsreader({
-  subsets: ["latin"],
-  variable: "--font-newsreader",
-  display: "swap",
-  style: ["normal", "italic"],
 });
 
 const jetbrainsMono = JetBrains_Mono({
@@ -22,9 +16,9 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Precedent — Smart-contract security advice, with a docket",
+  title: "Precedent — The Deterministic EVM Case Law Engine",
   description:
-    "An agent that treats Solidity security guidance like case law: every claim carries a date and version scope, and newer rulings overrule older ones.",
+    "An autonomous Web3 security tool and MCP server that replaces probabilistic RAG with a deterministic EVM supersession graph.",
   icons: {
     icon: "/favicon.svg",
     shortcut: "/favicon.svg",
@@ -40,7 +34,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${inter.variable} ${newsreader.variable} ${jetbrainsMono.variable}`}
+      className={`${spaceGrotesk.variable} ${jetbrainsMono.variable}`}
       suppressHydrationWarning
     >
       <head>

@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect, useRef } from "react";
-import { Search, ArrowRight, Loader2 } from "lucide-react";
+import { Search, ArrowRight, Loader2, ChevronDown } from "lucide-react";
 import { POPULAR_SOLC_VERSIONS, EVM_FORKS } from "@/lib/ui/tokens";
 
 interface PatternItem {
@@ -18,6 +18,14 @@ interface ComposerProps {
   initialQuestion?: string;
   initialVersion?: string;
 }
+
+const TOPIC_COLORS: Record<string, string> = {
+  transfer: "bg-deprecated",
+  selfdestruct: "bg-contested",
+  safemath: "bg-settled",
+  erc4626: "bg-unsafe",
+  txorigin: "bg-unsafe",
+};
 
 export function Composer({
   onSearch,
@@ -45,11 +53,11 @@ export function Composer({
       });
   }, []);
 
-  // Global '/' keyboard shortcut to focus the composer input
+  // Global '/' and 'Cmd+K' keyboard shortcut to focus the composer input
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (
-        e.key === "/" &&
+        (e.key === "/" || ((e.metaKey || e.ctrlKey) && e.key === "k")) &&
         document.activeElement?.tagName !== "INPUT" &&
         document.activeElement?.tagName !== "TEXTAREA"
       ) {
@@ -83,92 +91,114 @@ export function Composer({
   };
 
   return (
-    <div className="w-full max-w-2xl mx-auto flex flex-col gap-3">
-      {/* Composer Bar with Vibrancy */}
+    <div className="w-full max-w-3xl mx-auto flex flex-col gap-4">
+      {/* Precision Command Composer */}
       <form
         onSubmit={handleSubmit}
-        className="relative flex items-center bg-surface/85 vibrancy border border-hairline rounded-composer shadow-highlight p-1.5 transition-all focus-within:border-action/60"
+        className="group relative flex items-center bg-surface/90 vibrancy border border-hairline rounded-composer shadow-[0_20px_50px_rgba(0,0,0,0.5),inset_0_1px_0_rgba(255,255,255,0.12)] p-2 transition-all duration-300 focus-within:border-action/60 focus-within:ring-2 focus-within:ring-action/20"
       >
-        <div className="pl-3.5 pr-2 text-text-2">
-          <Search className="w-5 h-5 stroke-[1.5]" />
+        {/* Leading Search Icon */}
+        <div className="pl-3.5 pr-2 text-text-2/80 group-focus-within:text-action transition-colors">
+          <Search className="w-5 h-5 stroke-[1.75]" />
         </div>
 
+        {/* Input */}
         <input
           ref={inputRef}
           type="text"
           value={question}
           onChange={(e) => setQuestion(e.target.value)}
-          placeholder='Ask about a pattern, for example "Is transfer() safe on 0.8.28?"'
+          placeholder='Ask a case-law question, e.g. "Is transfer() safe on 0.8.28?"'
           disabled={isLoading}
-          className="flex-1 bg-transparent text-text placeholder:text-text-2 text-base px-2 py-3 focus:outline-none disabled:opacity-50"
+          className="flex-1 bg-transparent text-text placeholder:text-text-2/60 text-sm sm:text-base px-2 py-3 focus:outline-none disabled:opacity-50 tracking-[-0.01em]"
         />
 
-        {/* Compiler Version Select */}
-        <div className="flex items-center gap-1.5 pr-1.5">
-          <select
-            value={version}
-            onChange={(e) => setVersion(e.target.value)}
-            disabled={isLoading}
-            aria-label="Solidity compiler version"
-            className="bg-surface-2 text-text text-xs font-mono px-2.5 py-2 rounded-input border border-hairline focus:outline-none focus-visible:ring-1 focus-visible:ring-action cursor-pointer disabled:opacity-50"
-          >
-            {POPULAR_SOLC_VERSIONS.map((v) => (
-              <option key={v} value={v}>
-                {v}
-              </option>
-            ))}
-          </select>
+        {/* Keyboard shortcut hint */}
+        <kbd className="hidden md:inline-flex items-center gap-1 px-2 py-1 text-[11px] font-mono text-text-2/60 rounded bg-surface-2/80 border border-hairline mr-2 select-none pointer-events-none">
+          <span>/</span>
+        </kbd>
 
-          {/* EVM Fork Select */}
-          <select
-            value={evm}
-            onChange={(e) => setEvm(e.target.value)}
-            disabled={isLoading}
-            aria-label="Target EVM fork"
-            className="hidden sm:inline-block bg-surface-2 text-text text-xs px-2 py-2 rounded-input border border-hairline focus:outline-none focus-visible:ring-1 focus-visible:ring-action cursor-pointer disabled:opacity-50"
-          >
-            <option value="">EVM: Default</option>
-            {EVM_FORKS.map((f) => (
-              <option key={f.value} value={f.value}>
-                {f.label}
-              </option>
-            ))}
-          </select>
+        {/* Controls Cluster */}
+        <div className="flex items-center gap-2 pr-1">
+          {/* Version Selector Pill */}
+          <div className="relative flex items-center">
+            <select
+              value={version}
+              onChange={(e) => setVersion(e.target.value)}
+              disabled={isLoading}
+              aria-label="Solidity compiler version"
+              className="appearance-none bg-surface-2/80 hover:bg-surface-2 text-text text-xs font-mono font-medium pl-3 pr-7 py-2.5 rounded-input border border-hairline focus:outline-none focus:border-action cursor-pointer transition-colors disabled:opacity-50"
+            >
+              {POPULAR_SOLC_VERSIONS.map((v) => (
+                <option key={v} value={v}>
+                  solc {v}
+                </option>
+              ))}
+            </select>
+            <ChevronDown className="w-3.5 h-3.5 text-text-2 pointer-events-none absolute right-2.5" />
+          </div>
 
-          {/* Submit Button */}
+          {/* EVM Fork Selector Pill */}
+          <div className="relative hidden lg:flex items-center">
+            <select
+              value={evm}
+              onChange={(e) => setEvm(e.target.value)}
+              disabled={isLoading}
+              aria-label="Target EVM fork"
+              className="appearance-none bg-surface-2/80 hover:bg-surface-2 text-text text-xs font-mono font-medium pl-3 pr-7 py-2.5 rounded-input border border-hairline focus:outline-none focus:border-action cursor-pointer transition-colors disabled:opacity-50"
+            >
+              <option value="">EVM: Default</option>
+              {EVM_FORKS.map((f) => (
+                <option key={f.value} value={f.value}>
+                  {f.label}
+                </option>
+              ))}
+            </select>
+            <ChevronDown className="w-3.5 h-3.5 text-text-2 pointer-events-none absolute right-2.5" />
+          </div>
+
+          {/* Premium Submit Button */}
           <button
             type="submit"
             disabled={!question.trim() || isLoading}
             aria-label="Get ruling"
-            className="inline-flex items-center justify-center min-w-[44px] h-[40px] px-4 rounded-full bg-action text-white font-medium text-sm transition-transform active:scale-95 disabled:opacity-40 disabled:cursor-not-allowed hover:brightness-110"
+            className="relative inline-flex items-center justify-center min-w-[44px] h-[40px] px-4 sm:px-5 rounded-full bg-action hover:brightness-110 text-white font-medium text-xs sm:text-sm shadow-[0_4px_16px_rgba(10,132,255,0.3),inset_0_1px_0_rgba(255,255,255,0.25)] transition-all active:scale-[0.98] disabled:opacity-40 disabled:cursor-not-allowed disabled:shadow-none"
           >
             {isLoading ? (
               <Loader2 className="w-4 h-4 animate-spin" />
             ) : (
-              <>
-                <span className="hidden sm:inline mr-1.5">Get ruling</span>
-                <ArrowRight className="w-4 h-4 stroke-[2]" />
-              </>
+              <div className="flex items-center gap-1.5">
+                <span className="hidden sm:inline font-medium">Get ruling</span>
+                <ArrowRight className="w-4 h-4 stroke-[2.25]" />
+              </div>
             )}
           </button>
         </div>
       </form>
 
-      {/* Data-Driven Example Chips */}
+      {/* Crafted Precedent Docket Chips */}
       {patterns.length > 0 && (
-        <div className="flex flex-wrap items-center justify-center gap-2 pt-1 text-xs text-text-2">
-          <span className="text-text-2/70 mr-0.5">Explore:</span>
-          {patterns.slice(0, 4).map((pat) => (
-            <button
-              key={pat._id}
-              type="button"
-              onClick={() => handleChipClick(pat)}
-              disabled={isLoading}
-              className="px-3 py-1 rounded-full border border-hairline bg-surface hover:bg-surface-2 hover:text-text text-text-2 transition-colors focus-visible:outline-action"
-            >
-              {pat.name}
-            </button>
-          ))}
+        <div className="flex flex-wrap items-center justify-center gap-2 pt-1 text-xs">
+          <span className="text-text-2/70 text-[11px] font-mono uppercase tracking-wider mr-1">
+            Docket Catalog:
+          </span>
+          {patterns.slice(0, 5).map((pat) => {
+            const topicKey = pat.slug.toLowerCase().replace(/[^a-z]/g, "");
+            const dotColor = Object.entries(TOPIC_COLORS).find(([k]) => topicKey.includes(k))?.[1] || "bg-action";
+
+            return (
+              <button
+                key={pat._id}
+                type="button"
+                onClick={() => handleChipClick(pat)}
+                disabled={isLoading}
+                className="group inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-hairline bg-surface/70 hover:bg-surface-2 hover:border-action/40 text-text-2 hover:text-text transition-all duration-200 focus-visible:outline-action"
+              >
+                <span className={`w-1.5 h-1.5 rounded-full ${dotColor} transition-transform group-hover:scale-125`} />
+                <span className="font-medium text-[11px] tracking-tight">{pat.name}</span>
+              </button>
+            );
+          })}
         </div>
       )}
     </div>

@@ -25,6 +25,11 @@ export const metadata: Metadata = {
   title: "Precedent — Smart-contract security advice, with a docket",
   description:
     "An agent that treats Solidity security guidance like case law: every claim carries a date and version scope, and newer rulings overrule older ones.",
+  icons: {
+    icon: "/favicon.svg",
+    shortcut: "/favicon.svg",
+    apple: "/favicon.svg",
+  },
 };
 
 export default function RootLayout({

@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ArrowLeft, CheckCircle2, XCircle, AlertTriangle, Scale, ExternalLink } from "lucide-react";
+import { ArrowLeft, CheckCircle2, XCircle } from "lucide-react";
 import resultsData from "@/eval/results.json";
 import { ThemeToggle } from "@/components/ThemeToggle";
 

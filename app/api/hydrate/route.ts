@@ -9,6 +9,19 @@ const HydrateSchema = z.object({
   claimIds: z.array(z.string()),
 });
 
+interface RawClaim {
+  _id: string;
+  statement: string;
+  stance: "safe" | "unsafe" | "deprecated" | "mixed";
+  fromVersion?: number;
+  toVersion?: number;
+  evmFork?: string;
+  source?: { _ref: string };
+  pattern?: { _ref: string };
+  supersedes?: Array<{ _ref: string }>;
+  contradicts?: Array<{ _ref: string }>;
+}
+
 export async function POST(req: NextRequest) {
   try {
     const body = await req.json();
@@ -44,15 +57,16 @@ export async function POST(req: NextRequest) {
       const sourcesMap = new Map((seedData.sources || []).map((s: { _id: string }) => [s._id, s]));
       const patternMap = new Map((seedData.patterns || []).map((p: { _id: string }) => [p._id, p]));
 
+      const rawClaims: RawClaim[] = seedData.claims || [];
       const targetIdSet = new Set(claimIds);
-      const matchedClaims = (seedData.claims || [])
-        .filter((c: { _id: string }) => targetIdSet.has(c._id))
-        .map((c: any) => {
+      const matchedClaims = rawClaims
+        .filter((c) => targetIdSet.has(c._id))
+        .map((c) => {
           const srcId = c.source?._ref;
           const patId = c.pattern?._ref;
-          const supersededBy = (seedData.claims || [])
-            .filter((other: any) => other.supersedes?.some((ref: any) => ref._ref === c._id))
-            .map((other: any) => other._id);
+          const supersededBy = rawClaims
+            .filter((other) => other.supersedes?.some((ref) => ref._ref === c._id))
+            .map((other) => other._id);
 
           return {
             _id: c._id,
@@ -63,8 +77,8 @@ export async function POST(req: NextRequest) {
             evmFork: c.evmFork,
             pattern: patId ? patternMap.get(patId) : undefined,
             source: srcId ? sourcesMap.get(srcId) : { title: "Primary Source", url: "#", publishedAt: "2024-01-01" },
-            supersedes: (c.supersedes || []).map((ref: any) => ref._ref),
-            contradicts: (c.contradicts || []).map((ref: any) => ref._ref),
+            supersedes: (c.supersedes || []).map((ref) => ref._ref),
+            contradicts: (c.contradicts || []).map((ref) => ref._ref),
             supersededBy,
           };
         });

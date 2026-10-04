@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { Scale, ArrowRight, ShieldCheck, History, GitCompare, ExternalLink, Sparkles } from "lucide-react";
+import { Scale, ArrowRight, ShieldCheck, History, GitCompare, ExternalLink } from "lucide-react";
 import { Composer } from "@/components/Composer";
 import { VerdictCard } from "@/components/VerdictCard";
 import { DocketTimeline } from "@/components/DocketTimeline";

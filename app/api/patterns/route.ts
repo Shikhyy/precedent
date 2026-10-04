@@ -4,6 +4,14 @@ import { GET_PATTERNS_QUERY } from "@/lib/sanity/queries";
 import * as fs from "fs";
 import * as path from "path";
 
+interface RawPatternDoc {
+  _id: string;
+  name: string;
+  slug?: { current: string };
+  summary?: string;
+  aliases?: string[];
+}
+
 export async function GET() {
   try {
     // 1. Try querying Sanity
@@ -25,7 +33,8 @@ export async function GET() {
     if (fs.existsSync(filePath)) {
       const raw = fs.readFileSync(filePath, "utf-8");
       const seedData = JSON.parse(raw);
-      const patterns = (seedData.patterns || []).map((p: any) => ({
+      const rawPatterns: RawPatternDoc[] = seedData.patterns || [];
+      const patterns = rawPatterns.map((p) => ({
         _id: p._id,
         name: p.name,
         slug: p.slug?.current || p._id,

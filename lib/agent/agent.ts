@@ -21,7 +21,7 @@ export function getLanguageModel(): LanguageModel {
 }
 
 export interface PrecedentAgentInstance {
-  agent: ToolLoopAgent<never, ToolSet, any>;
+  agent: ToolLoopAgent<never, ToolSet, ReturnType<typeof Output.object<Verdict>>>;
   close: () => Promise<void>;
   isMcpConfigured: boolean;
 }

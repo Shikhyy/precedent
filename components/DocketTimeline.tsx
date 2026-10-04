@@ -1,8 +1,7 @@
 "use client";
 
-import { useId } from "react";
 import { motion } from "motion/react";
-import { ExternalLink, CheckCircle2, History, AlertCircle } from "lucide-react";
+import { ExternalLink, History } from "lucide-react";
 import { StanceBadge } from "./StanceBadge";
 import { STANCE_CONFIG } from "@/lib/ui/tokens";
 import { parseVersionKey } from "@/lib/sanity/version";

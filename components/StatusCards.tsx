@@ -48,7 +48,7 @@ export function OutOfScopeCard({ onSelectPattern }: OutOfScopeCardProps) {
   return (
     <div className="w-full bg-surface border border-hairline rounded-card p-6 sm:p-8 flex flex-col shadow-highlight">
       <h3 className="text-xl font-serif text-text mb-2">
-        Precedent doesn't cover that yet.
+        Precedent doesn&apos;t cover that yet.
       </h3>
       <p className="text-sm text-text-2 mb-6 max-w-xl">
         Precedent currently models 5 deep case-law patterns with verified primary source citations and version supersession. Try asking about one of the covered patterns below:

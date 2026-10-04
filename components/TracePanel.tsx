@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import { X, Activity, CheckCircle2, Clock, Terminal } from "lucide-react";
+import { X, Activity, Clock, Terminal } from "lucide-react";
 
 export interface TraceEvent {
   step: string;

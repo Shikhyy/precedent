@@ -29,7 +29,6 @@ export function VerdictCard({
   };
 
   const isContested = verdict.status === "contested";
-  const isOutOfScope = verdict.status === "out_of_scope";
 
   return (
     <article
@@ -70,7 +69,7 @@ export function VerdictCard({
         id="verdict-heading"
         className="font-serif text-2xl sm:text-3xl text-text leading-[1.25] tracking-[-0.02em] mb-4 max-w-[68ch]"
       >
-        "{verdict.headline}"
+        &ldquo;{verdict.headline}&rdquo;
       </h2>
 
       {/* Caveats */}

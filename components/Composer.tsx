@@ -119,6 +119,22 @@ export function Composer({
             ))}
           </select>
 
+          {/* EVM Fork Select */}
+          <select
+            value={evm}
+            onChange={(e) => setEvm(e.target.value)}
+            disabled={isLoading}
+            aria-label="Target EVM fork"
+            className="hidden sm:inline-block bg-surface-2 text-text text-xs px-2 py-2 rounded-input border border-hairline focus:outline-none focus-visible:ring-1 focus-visible:ring-action cursor-pointer disabled:opacity-50"
+          >
+            <option value="">EVM: Default</option>
+            {EVM_FORKS.map((f) => (
+              <option key={f.value} value={f.value}>
+                {f.label}
+              </option>
+            ))}
+          </select>
+
           {/* Submit Button */}
           <button
             type="submit"

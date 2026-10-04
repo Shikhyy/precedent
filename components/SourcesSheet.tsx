@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import { X, ExternalLink, ShieldCheck, BookOpen } from "lucide-react";
+import { X, ExternalLink, BookOpen } from "lucide-react";
 import type { HydratedSource, KnowledgeBaseRef } from "@/lib/agent/verdict";
 
 interface SourcesSheetProps {
